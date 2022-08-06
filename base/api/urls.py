@@ -12,4 +12,5 @@ urlpatterns = [
     path('',views.getRoutes),
     path('',include('user.urls')),
     path('',include('appointment.urls')),
+    path('',include('chat.urls')),
 ]

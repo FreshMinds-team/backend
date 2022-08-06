@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'user.apps.UserConfig',
     'appointment.apps.AppointmentConfig',
+    'chat.apps.ChatConfig',
 
     'rest_framework',
     'rest_framework_simplejwt',

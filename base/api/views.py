@@ -17,5 +17,9 @@ def getRoutes(request):
         'appointment/add/',
         'appointment/update/<str:pk>',
         'appointment/delete/<str:pk>',
+        'chat/',
+        'chat/add/',
+        'chat/update/<str:pk>',
+        'chat/delete/<str:pk>',
     ]
     return Response(routes)
