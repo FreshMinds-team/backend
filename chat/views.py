@@ -14,20 +14,3 @@ def addChat(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
-
-@api_view(['POST'])
-def updateChat(request,id):
-    chat = Chat.objects.get(pk=id)
-    serializer = ChatSerializer(instance=chat,data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
-
-
-@api_view(['DELETE'])
-def deleteChat(request,id):
-    chat = Chat.objects.get(pk=id)
-    serializer = ChatSerializer(instance=chat,data=request.data)
-    if serializer.is_valid():
-        serializer.delete()
-    return Response('Chat Record Successfully deleted')
