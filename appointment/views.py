@@ -8,6 +8,11 @@ def getAppointment(request):
     serializer = AppointmentSerializer(Appointment.objects.all(),many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getAppointmentDetails(request,id):
+    serializer = AppointmentSerializer(Appointment.objects.get(pk=id),many=False)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def addAppointment(request):
     serializer= AppointmentSerializer(data=request.data)

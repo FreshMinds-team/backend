@@ -8,6 +8,11 @@ def getMedication(request):
     serializer = MedicationSerializer(Medication.objects.all(),many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getMedicationDetails(request,id):
+    serializer = MedicationSerializer(Medication.objects.get(pk=id),many=False)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def addMedication(request):
     serializer= MedicationSerializer(data=request.data)

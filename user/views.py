@@ -8,6 +8,11 @@ def getDoctor(request):
     serializer = DoctorSerializer(Doctor.objects.all(),many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getDoctorDetails(request,id):
+    serializer = DoctorSerializer(Doctor.objects.get(pk=id),many=False)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def addDoctor(request):
     serializer= DoctorSerializer(data=request.data)
@@ -36,6 +41,11 @@ def deleteDoctor(request,id):
 @api_view(['GET'])
 def getPatient(request):
     serializer = PatientSerializer(Patient.objects.all(),many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getPatientDetails(request,id):
+    serializer = PatientSerializer(Patient.objects.get(pk=id),many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])

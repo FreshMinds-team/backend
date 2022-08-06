@@ -22,14 +22,14 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-class Doctor(User,AbstractUser):
+class Doctor(User):
     experience=models.CharField(max_length=255)
     qualification=models.CharField(max_length=255)
 
     class Meta:
         pass
 
-class Patient(User,AbstractUser):
+class Patient(User):
     patient_case=models.CharField(max_length=255)
 
     class Meta:
