@@ -11,3 +11,18 @@ class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model=Doctor
         fields="__all__"
+
+class QualificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Qualification
+        fields="__all__"
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Experience
+        fields="__all__"
+
+class ExpertiseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Expertise
+        fields="__all__"

@@ -22,6 +22,7 @@ class User(AbstractUser):
         return self.username
 
 class Doctor(User):
+    description=models.TextField(max_length=255,null=True)
     profilepic=models.ImageField(upload_to="media/doctor",null=True)
     class Meta:
         pass
@@ -46,6 +47,11 @@ class Experience(models.Model):
     
     def __str__(self):
         return self.title
+
+class Expertise(models.Model):
+    title=models.CharField(max_length=255)
+    description=models.TextField(max_length=255)
+    doctor=models.ForeignKey(Doctor,on_delete=models.CASCADE)
 
 
 class Patient(User):
