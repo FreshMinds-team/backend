@@ -8,6 +8,7 @@ class Appointment(models.Model):
     description= models.TextField(max_length=255,null=True)
     appointment_time=models.TimeField()
     appointment_date=models.DateField()
+    price=models.CharField(max_length=10,null=True)
     created_at=models.DateTimeField(auto_now=True)
     updated_at=models.DateTimeField(auto_now=True)
 

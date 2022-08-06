@@ -22,4 +22,4 @@ class Appointment1Serializer(serializers.ModelSerializer):
     doctor=ShallowDoctorSerializer(many=False,read_only=True)
     class Meta:
         model=Appointment
-        fields=['patient','appointment_date','appointment_time','doctor','accepted']
+        fields=['patient','appointment_date','appointment_time','doctor','price','accepted']
