@@ -5,17 +5,17 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET'])
 def getAppointment(request):
-    serializer = AppointmentSerializer(Appointment.objects.all(),many=True)
+    serializer = Appointment1Serializer(Appointment.objects.all(),many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getAppointmentDetails(request,id):
-    serializer = AppointmentSerializer(Appointment.objects.get(pk=id),many=False)
+    serializer = Appointment1Serializer(Appointment.objects.get(pk=id),many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def addAppointment(request):
-    serializer= AppointmentSerializer(data=request.data)
+    serializer= Appointment1Serializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -23,7 +23,7 @@ def addAppointment(request):
 @api_view(['POST'])
 def updateAppointment(request,id):
     appointment = appointment.objects.get(pk=id)
-    serializer = AppointmentSerializer(instance=appointment,data=request.data)
+    serializer = Appointment1Serializer(instance=appointment,data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -32,7 +32,7 @@ def updateAppointment(request,id):
 @api_view(['DELETE'])
 def deleteAppointment(request,id):
     appointment = appointment.objects.get(pk=id)
-    serializer = AppointmentSerializer(instance=appointment,data=request.data)
+    serializer = Appointment1Serializer(instance=appointment,data=request.data)
     if serializer.is_valid():
         serializer.delete()
     return Response('appointment Record Successfully deleted')

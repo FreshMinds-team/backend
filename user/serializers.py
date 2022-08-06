@@ -9,7 +9,6 @@ class PatientSerializer(serializers.ModelSerializer):
         model=Patient
         fields="__all__"
 
-
 class DoctorSerializer(serializers.ModelSerializer):
     appointed= AppointmentSerializer(many=True,read_only=True,allow_null=True)
     class Meta:
