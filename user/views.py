@@ -40,13 +40,9 @@ def deleteDoctor(request,id):
     
 #Qualification Api
 @api_view(['GET'])
-def getQualification(request):
-    serializer = QualificationSerializer(Qualification.objects.all(),many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def getQualificationDetails(request,id):
-    serializer = QualificationSerializer(Qualification.objects.get(pk=id),many=False)
+def getQualification(request,id):
+    serializer = QualificationSerializer(Qualification.objects.filter(doctor_id=id),many=True)
+    print(serializer.data)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -58,7 +54,7 @@ def addQualification(request):
 
 @api_view(['POST'])
 def updateQualification(request,id):
-    qualification = Qualification.objects.get(pk=id)
+    qualification = Qualification.objects.filter(doctor_id=id)
     serializer = QualificationSerializer(instance=qualification,data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -67,7 +63,7 @@ def updateQualification(request,id):
 
 @api_view(['DELETE'])
 def deleteQualification(request,id):
-    qualification = Qualification.objects.get(pk=id)
+    qualification = Qualification.objects.filter(doctor_id=id)
     serializer = QualificationSerializer(instance=qualification,data=request.data)
     if serializer.is_valid():
         serializer.delete()
@@ -75,14 +71,10 @@ def deleteQualification(request,id):
 
 #Experience Api
 @api_view(['GET'])
-def getExperience(request):
-    serializer = ExperienceSerializer(Experience.objects.all(),many=True)
+def getExperience(request,id):
+    serializer = ExperienceSerializer(Experience.objects.filter(doctor_id=id),many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def getExperienceDetails(request,id):
-    serializer = ExperienceSerializer(Experience.objects.get(pk=id),many=False)
-    return Response(serializer.data)
 
 @api_view(['POST'])
 def addExperience(request):
@@ -93,7 +85,7 @@ def addExperience(request):
 
 @api_view(['POST'])
 def updateExperience(request,id):
-    experience = Experience.objects.get(pk=id)
+    experience = Experience.objects.filter(doctor_id=id)
     serializer = ExperienceSerializer(instance=experience,data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -102,7 +94,7 @@ def updateExperience(request,id):
 
 @api_view(['DELETE'])
 def deleteExperience(request,id):
-    experience = Experience.objects.get(pk=id)
+    experience = Experience.objects.filter(doctor_id=id)
     serializer = ExperienceSerializer(instance=experience,data=request.data)
     if serializer.is_valid():
         serializer.delete()
@@ -111,13 +103,13 @@ def deleteExperience(request,id):
 
 #Expertise Api 
 @api_view(['GET'])
-def getExpertise(request):
-    serializer = ExpertiseSerializer(Expertise.objects.all(),many=True)
+def getExpertise(request,id):
+    serializer = ExpertiseSerializer(Expertise.objects.filter(doctor_id=id),many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getExpertiseDetails(request,id):
-    serializer = ExpertiseSerializer(Expertise.objects.get(pk=id),many=False)
+    serializer = ExpertiseSerializer(Expertise.objects.filter(doctor_id=id),many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -129,7 +121,7 @@ def addExpertise(request):
 
 @api_view(['POST'])
 def updateExpertise(request,id):
-    expertise = Expertise.objects.get(pk=id)
+    expertise = Expertise.objects.filter(doctor_id=id)
     serializer = ExpertiseSerializer(instance=expertise,data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -138,7 +130,7 @@ def updateExpertise(request,id):
 
 @api_view(['DELETE'])
 def deleteExpertise(request,id):
-    expertise = Expertise.objects.get(pk=id)
+    expertise = Expertise.objects.filter(doctor_id=id)
     serializer = ExpertiseSerializer(instance=expertise,data=request.data)
     if serializer.is_valid():
         serializer.delete()
