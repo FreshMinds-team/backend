@@ -1,13 +1,17 @@
+from xml.etree.ElementInclude import include
 from rest_framework import serializers
+from appointment.serializers import AppointmentSerializer
 from user.models import *
 
 class PatientSerializer(serializers.ModelSerializer):
+    appoint_patient = AppointmentSerializer(many=True,read_only=True,allow_null=True)
     class Meta:
         model=Patient
         fields="__all__"
 
 
 class DoctorSerializer(serializers.ModelSerializer):
+    appointed= AppointmentSerializer(many=True,read_only=True,allow_null=True)
     class Meta:
         model=Doctor
         fields="__all__"

@@ -2,6 +2,8 @@ from user.serializers import *
 from user.models import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import generics
+
 
 #Doctor Api
 @api_view(['GET'])

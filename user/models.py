@@ -3,12 +3,11 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
 
-
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self,email, password=None):
         if not email:
             raise ValueError("User must have an email address.")
-        
+
         user = self.model(email=self.normalize_email(email))
 
         user.set_password(password)
@@ -31,7 +30,7 @@ class User(AbstractUser):
     first_name=models.CharField(max_length=20)
     last_name=models.CharField(max_length=20)
     password=models.CharField(max_length=255)
-    email=models.EmailField(null=True)
+    email=models.EmailField(unique=True)
     GENDER = [('Male','Male'),('Female','Female'),('Other',"Other")]
     dob=models.DateField(null=True)
     gender=models.CharField(max_length=6,choices=GENDER,null=True)
@@ -39,9 +38,13 @@ class User(AbstractUser):
     updated_at=models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS=[]
 
     objects = CustomUserManager()
-   
+
+    class Meta:
+        pass
+
     def __str__(self):
         return self.username
 
@@ -56,7 +59,7 @@ class Qualification(models.Model):
     institution = models.CharField(max_length=100)
     date = models.DateField()
     doctor = models.ForeignKey("Doctor",on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.title
 
@@ -66,7 +69,7 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True)
     doctor = models.ForeignKey("Doctor",on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.title
 
@@ -81,3 +84,4 @@ class Patient(User):
 
     class Meta:
         pass
+
