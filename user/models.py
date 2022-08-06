@@ -6,7 +6,7 @@ class User(models.Model):
     last_name=models.CharField(max_length=20)
     # password=models.CharField(max_length=40,null=True)
     GENDER = [('Male','Male'),('Female','Female'),('Other',"Other")]
-    profilepic=models.ImageField(null=True)
+    profilepic=models.ImageField(upload_to="media/",null=True)
     dob=models.DateField()
     gender=models.CharField(max_length=6,choices=GENDER,null=True)
     created_at=models.DateTimeField(auto_now=True)
@@ -16,7 +16,7 @@ class User(models.Model):
         return self.username
 
 class Doctor(User):
-    experince=models.CharField(max_length=255)
+    experience=models.CharField(max_length=255)
     qualification=models.CharField(max_length=255)
 
 class Patient(User):
