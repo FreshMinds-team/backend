@@ -7,7 +7,7 @@ class User(AbstractUser):
     username=models.CharField(max_length=20,unique=True)
     first_name=models.CharField(max_length=20)
     last_name=models.CharField(max_length=20)
-    password=models.CharField(max_length=40,null=True)
+    password=models.CharField(max_length=40)
     email=models.EmailField(null=True)
     GENDER = [('Male','Male'),('Female','Female'),('Other',"Other")]
     profilepic=models.ImageField(upload_to="media/",null=True)
