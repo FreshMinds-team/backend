@@ -5,6 +5,7 @@ class Appointment(models.Model):
     patient=models.OneToOneField(Patient,on_delete=models.CASCADE,null=True)
     doctor=models.ForeignKey(Doctor,on_delete=models.CASCADE,null=True)
     accepted=models.BooleanField(default=False)
+    description= models.TextField(max_length=255,null=True)
     appointment_time=models.TimeField()
     appointment_date=models.DateField()
     created_at=models.DateTimeField(auto_now=True)
