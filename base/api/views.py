@@ -2,30 +2,20 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from user.models import *
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, User):
-        token = super().get_token(User)
-
-        # Add custom claims
-        token['username'] = User.username
-        token['first_name'] = User.first_name
-        token['last_name'] = User.last_name
-        # token['groups'] = User.groups
-        # ...
-
-        return token
-
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
-
 @api_view(['GET'])
 def getRoutes(request):
     routes=[
-        'api/token',
-        'api/token/refresh',
+        'doctor/',
+        'doctor/add/',
+        'doctor/update/<str:pk>',
+        'doctor/delete/<str:pk>',
+        'patient/',
+        'patient/add/',
+        'patient/update/<str:pk>',
+        'patient/delete/<str:pk>',
+        'appointment/',
+        'appointment/add/',
+        'appointment/update/<str:pk>',
+        'appointment/delete/<str:pk>',
     ]
     return Response(routes)
