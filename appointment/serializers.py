@@ -10,16 +10,16 @@ class AppointmentSerializer(serializers.ModelSerializer):
 class ShallowPatientSerializer(serializers.ModelSerializer):
     class Meta:
         model=Patient
-        fields=['username','email','phone','address']
+        fields=['username','first_name','last_name','email','phone','address']
 
 class ShallowDoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model=Doctor
-        fields=['username','email','phone','address']
+        fields=['username','first_name','last_name','email','phone','address']
 
 class Appointment1Serializer(serializers.ModelSerializer):
     patient=ShallowPatientSerializer(many=False,read_only=True)
     doctor=ShallowDoctorSerializer(many=False,read_only=True)
     class Meta:
         model=Appointment
-        fields=['patient','appointment_date','appointment_time','doctor']
+        fields=['patient','appointment_date','appointment_time','doctor','accepted']
