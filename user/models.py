@@ -26,7 +26,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
 class User(AbstractUser):
-    username=models.CharField(max_length=20,unique=True)
+    # Username=models.CharField(max_length=20,unique=True)
     first_name=models.CharField(max_length=20)
     last_name=models.CharField(max_length=20)
     password=models.CharField(max_length=255)
@@ -39,7 +39,7 @@ class User(AbstractUser):
     created_at=models.DateTimeField(auto_now=True)
     updated_at=models.DateTimeField(auto_now=True)
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS=[]
 
     objects = CustomUserManager()

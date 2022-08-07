@@ -9,7 +9,7 @@ class CustomDoctorAdmin(UserAdmin):
     add_form = CustomDoctorCreationForm
     form = CustomDoctorChangeForm
     model = Doctor
-    list_display = ('email', 'is_staff', 'is_active',)
+    list_display = ('email', 'username','is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -28,7 +28,7 @@ class CustomPatientAdmin(UserAdmin):
     add_form = CustomPatientCreationForm
     form = CustomPatientChangeForm
     model = Patient
-    list_display = ('email', 'is_staff', 'is_active',)
+    list_display = ('email', 'username','is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
