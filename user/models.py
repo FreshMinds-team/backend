@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
+import random
 
 
 class CustomUserManager(BaseUserManager):
@@ -32,7 +33,10 @@ class User(AbstractUser):
     password=models.CharField(max_length=255)
     email=models.EmailField(unique=True)
     phone=models.CharField(max_length=14,null=True)
+    active=models.BooleanField(default=True)
     address=models.CharField(max_length=27,null=True)
+    TYPES = [('Patient','Patient'),('Doctor','Doctor')]
+    type=models.CharField(max_length=27,choices=TYPES,null=True)
     GENDER = [('Male','Male'),('Female','Female'),('Other',"Other")]
     dob=models.DateField(null=True)
     gender=models.CharField(max_length=6,choices=GENDER,null=True)
@@ -52,7 +56,7 @@ class User(AbstractUser):
 
 class Doctor(User):
     description=models.TextField(max_length=1000,null=True)
-    profilepic=models.ImageField(upload_to="media/doctor",null=True)
+    profilepic=models.ImageField(upload_to="media/doctor"+str(random.randint(0, 9999)))
     class Meta:
         pass
 
@@ -81,8 +85,8 @@ class Expertise(models.Model):
 
 
 class Patient(User):
-    profilepic=models.ImageField(upload_to="media/patients",null=True)
-    patient_case=models.CharField(max_length=255)
+    profilepic=models.ImageField(upload_to="media/patients/"+str(random.randint(0, 9999)))
+    patient_case=models.CharField(max_length=255,null=True)
 
     class Meta:
         pass

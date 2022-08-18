@@ -12,13 +12,13 @@ class CustomDoctorAdmin(UserAdmin):
     list_display = ('email', 'username','is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password','dob','type')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','email', 'password1', 'password2', 'first_name','last_name','is_staff', 'is_active')}
+            'fields': ('username','email', 'password1', 'password2', 'first_name','last_name','is_staff', 'is_active','dob','type','gender')}
         ),
     )
     search_fields = ('email',)
@@ -31,13 +31,13 @@ class CustomPatientAdmin(UserAdmin):
     list_display = ('email', 'username','is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password','dob','type')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','email', 'password1', 'password2', 'first_name','last_name','is_staff', 'is_active')}
+            'fields': ('username','email', 'password1', 'password2', 'first_name','last_name','is_staff', 'is_active','dob','type')}
         ),
     )
     search_fields = ('email',)
@@ -48,3 +48,4 @@ admin.site.register(Doctor,CustomDoctorAdmin)
 admin.site.register(Qualification)
 admin.site.register(Experience)
 admin.site.register(Expertise)
+admin.site.register(User)
