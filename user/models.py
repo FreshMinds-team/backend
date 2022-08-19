@@ -56,7 +56,7 @@ class User(AbstractUser):
 
 class Doctor(User):
     description=models.TextField(max_length=1000,null=True)
-    profilepic=models.ImageField(upload_to="media/doctor"+str(random.randint(0, 9999)))
+    profilepic=models.ImageField(default='media/default.png',upload_to="media/doctor/"+str(random.randint(0, 9999)))
     class Meta:
         pass
 
@@ -85,7 +85,7 @@ class Expertise(models.Model):
 
 
 class Patient(User):
-    profilepic=models.ImageField(upload_to="media/patients/"+str(random.randint(0, 9999)))
+    profilepic=models.ImageField(default='media/default.png',upload_to="media/patients/"+str(random.randint(0, 9999)))
     patient_case=models.CharField(max_length=255,null=True)
 
     class Meta:

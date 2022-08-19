@@ -1,3 +1,4 @@
+from errno import ESTALE
 from appointment.serializers import *
 from appointment.models import *
 from rest_framework.response import Response
@@ -12,12 +13,24 @@ def getAppointment(request):
 
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
+def getPatientPendingAppointment(request,pk):
+    serializer = Appointment1Serializer(Appointment.objects.filter(patient=pk,closed=False),many=True)
+    return Response(serializer.data)
+    
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def getPatientAcceptedAppointment(request,pk):
+    serializer = Appointment1Serializer(Appointment.objects.filter(patient=pk,closed=False,accepted=True),many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getAppointmentDetails(request,id):
     serializer = Appointment1Serializer(Appointment.objects.get(pk=id),many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def addAppointment(request):
     print(request.data)
     serializer= AppointmentSerializer(data=request.data)
@@ -29,19 +42,19 @@ def addAppointment(request):
 # @permission_classes([IsAuthenticated])
 def updateAppointment(request,pk):
     appointment = Appointment.objects.get(id=pk)
-    serializer = Appointment1Serializer(instance=appointment,data=request.data)
+    serializer = AppointmentSerializer(instance=appointment,data=request.data)
+    print(request.data)
     if serializer.is_valid():
         serializer.save()
+    else:
+        print(serializer.errors)
     return Response(serializer.data)
 
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
-def deleteAppointment(request,id):
-    appointment = Appointment.objects.get(pk=id)
-    serializer = Appointment1Serializer(instance=appointment,data=request.data)
-    if serializer.is_valid():
-        serializer.delete()
+def deleteAppointment(request,pk):
+    Appointment.objects.get(id=pk).delete()
     return Response('appointment Record Successfully deleted')
     
 

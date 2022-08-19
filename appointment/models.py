@@ -10,6 +10,7 @@ class Appointment(models.Model):
     appointment_time=models.TimeField()
     appointment_date=models.DateField()
     price=models.CharField(max_length=10,null=True)
+    payment_id=models.CharField(max_length=30,null=True)
     created_at=models.DateTimeField(auto_now=True)
     updated_at=models.DateTimeField(auto_now=True)
 

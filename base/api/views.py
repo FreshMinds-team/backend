@@ -21,6 +21,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['address'] = user.address
         token['phone'] = user.phone
         token['type'] = user.type
+        token['gender'] = user.gender
         print(user.id)
         # ...
         return token
