@@ -170,7 +170,7 @@ def deleteExpertise(request,id):
     
 #Patient Api
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getPatient(request):
     serializer = PatientSerializer(Patient.objects.all(),many=True)
     return Response(serializer.data)
@@ -201,7 +201,7 @@ def updatePatient(request,id):
     return Response(serializer.data)
 
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def updatePatientPartial(request,pk):
     patient = Patient.objects.get(id=pk)
     serializer = PatientSerializer(patient, data=request.data, partial=True)

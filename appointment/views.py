@@ -6,19 +6,19 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getAppointment(request):
     serializer = Appointment1Serializer(Appointment.objects.all(),many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getPatientPendingAppointment(request,pk):
     serializer = Appointment1Serializer(Appointment.objects.filter(patient=pk,closed=False),many=True)
     return Response(serializer.data)
     
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getPatientAcceptedAppointment(request,pk):
     serializer = Appointment1Serializer(Appointment.objects.filter(patient=pk,closed=False,accepted=True),many=True)
     return Response(serializer.data)
@@ -39,7 +39,7 @@ def addAppointment(request):
     return Response(serializer.data)
 
 @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def updateAppointment(request,pk):
     appointment = Appointment.objects.get(id=pk)
     serializer = AppointmentSerializer(instance=appointment,data=request.data)
